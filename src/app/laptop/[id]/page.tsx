@@ -6,7 +6,7 @@ async function getLaptop(id: string): Promise<Laptop | null> {
   // Validación temprana: evita pegarle al backend con "undefined" o vacío
   if (!id || id === "undefined") return null;
 
-  const res = await fetch(`http://localhost:3000/laptops/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/laptops/${id}`, {
     cache: "no-store",
   });
 

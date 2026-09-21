@@ -2,7 +2,7 @@ import { Laptop } from "../interfaces/laptop";
 
 async function getLaptops(): Promise<Laptop[]> {
   // Llamamos al backend en el puerto 3000
-  const res = await fetch('http://localhost:3000/laptops', {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/laptops`, {
     cache: 'no-store' 
   });
 
