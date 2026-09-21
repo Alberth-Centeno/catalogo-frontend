@@ -25,7 +25,7 @@ export default function AdminPage() {
 
   const fetchLaptops = async () => {
     try {
-      const res = await fetch("http://localhost:3000/laptops");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/laptops`);
       if (res.ok) {
         const data = await res.json();
         setLaptops(data);
@@ -38,7 +38,7 @@ export default function AdminPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/auth/login", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/laptops`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -62,8 +62,8 @@ export default function AdminPage() {
       // Si tenemos un editingId hacemos PUT, si no, POST
       const method = editingId ? "PUT" : "POST";
       const url = editingId 
-        ? `http://localhost:3000/laptops/${editingId}` 
-        : "http://localhost:3000/laptops";
+        ? `${process.env.NEXT_PUBLIC_API_URL}/laptops/${editingId}` 
+        : `${process.env.NEXT_PUBLIC_API_URL}/laptops`;
 
       const res = await fetch(url, {
         method,
@@ -94,7 +94,7 @@ export default function AdminPage() {
     if (!window.confirm("¿Estás seguro de eliminar esta laptop del catálogo?")) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/laptops/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/laptops/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`
